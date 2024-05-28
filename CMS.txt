@@ -1,0 +1,30 @@
+
+git init                    # configuração inicial de um novo repositório # Inicializa novo repositório do Git.
+git status                  # exibe as condições do diretório de trabalho e da área de staging
+git add index.html          # adicionar o arquivo ainda não rastreados
+git add .                   # adicionar todos os arquivos ainda não rastreados  # Move as alterações do diretório de trabalho para a área de staging
+git commit -a -m '<msg>'    # comitar todos os tipos de arquivos (-a), com a mensagem(-m '<msg>')
+
+
+git checkout
+git push
+git stash
+git checkout <branch>
+git stash pop
+
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+
+index.html
+    <h1>Algum título</h1>
+    <p>Estou aprendendo git</p>
+    <p>Alguma coisa</p>
+    <p>Novo paragrafo</p>
+
+
+teste.txt
+Algum conteúdo
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
