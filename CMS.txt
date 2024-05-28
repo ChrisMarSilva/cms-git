@@ -23,7 +23,7 @@ git checkout -b "develop"   # Alterne entre os ramos ou restaure os arquivos da 
 git push --set-upstream origin develop
 git push 
 
-
+git checkout main
 
 
 ------------------------------------------------------------------------------------------------------------------------
