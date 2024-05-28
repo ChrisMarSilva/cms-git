@@ -5,20 +5,28 @@ git add index.html          # adicionar o arquivo ainda não rastreados
 git add .                   # adicionar todos os arquivos ainda não rastreados  # Move as alterações do diretório de trabalho para a área de staging
 git commit -a -m '<msg>'    # comitar todos os tipos de arquivos (-a), com a mensagem(-m '<msg>')
 
+create a new repository on the command line
+echo "# cms-git" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/ChrisMarSilva/cms-git.git
+git push -u origin main
 
-git checkout
-git push
+# push an existing repository from the command line
+git remote add origin https://github.com/ChrisMarSilva/cms-git.git
+git branch -M main          # permite criar, listar, renomear e excluir ramificações. 
+git push -u origin main     # enviar seus commits locais para um repositório remoto,
+
+git checkout -b "develop"   # Alterne entre os ramos ou restaure os arquivos da árvore de trabalho # navegar entre ramificações criadas pelo git branch
 git stash
 git checkout <branch>
 git stash pop
 
 
-------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------
 
 index.html
-    <h1>Algum título</h1>
-    <p>Estou aprendendo git</p>
     <p>Alguma coisa</p>
     <p>Novo paragrafo</p>
 
