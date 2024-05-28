@@ -20,14 +20,16 @@ git branch -M main          # permite criar, listar, renomear e excluir ramifica
 git push -u origin main     # enviar seus commits locais para um repositório remoto,
 
 git checkout -b "develop"   # Alterne entre os ramos ou restaure os arquivos da árvore de trabalho # navegar entre ramificações criadas pelo git branch
-git stash
-git checkout <branch>
-git stash pop
+git push --set-upstream origin develop
+git push 
 
 
+
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 index.html
-    <p>Alguma coisa</p>
     <p>Novo paragrafo</p>
 
 
