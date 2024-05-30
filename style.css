@@ -1,14 +1,14 @@
 body {
-color: purple;
-background-color: powderblue;
-font-family: Georgia, "Times New Roman", Times, serif;
+  color: purple;
+  background-color: powderblue;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 h1 {
-color: blue;
-font-family: Helvetica, Geneva, Arial, SunSans-Regular, sans-serif;
+  color: blue;
+  font-family: Helvetica, Geneva, Arial, SunSans-Regular, sans-serif;
 }
 p {
-color: red;
-border: 2px solid powderblue;
-padding: 30px;
+  color: red;
+  border: 2px solid powderblue;
+  padding: 30px;
 }
