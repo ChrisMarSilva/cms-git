@@ -10,6 +10,8 @@ git checkout                Além de verificar commits antigos e revisões de ar
 git status                  Exibe o estado do diretório de trabalho e o instantâneo preparado. Utilize essa opção em conjunto com os comandos git add e o git commit para ver com precisão o que vai ser incluído no próximo instantâneo.
 git clean                   Remove os arquivos não monitorados do diretório de trabalho. Esse é o correspondente lógico do git reset, que (em geral) só opera em arquivos monitorados.
 git commit                  Faz um commit do instantâneo preparado no histórico do projeto. Combinado com git add, esse processo define o fluxo de trabalho básico para todos os usuários do Git.
+git commit -a               Diz ao comando para preparar automaticamente os arquivos que foram modificados e excluídos, porém os novos arquivos que você não informou ao Git não são afetados.
+git commit --amend          Informação da marcação -- amend ao git commit permite corrigir o commit mais recente. Isso é muito útil quando você esquece de preparar um arquivo ou para omitir informações importantes da mensagem do commit.
 git push                    É o oposto de buscar (com algumas ressalvas). Permite que você mova uma ramificação local para outro repositório, o que é um modo conveniente de publicar as contribuições. É semelhante ao svn commit, mas envia uma série de commits em vez de um único conjunto de alterações.
 git merge                   Uma maneira poderosa de integrar alterações de ramificações divergentes. Após bifurcar o histórico do projeto com o git branch, o git merge permite unificar o histórico de novo.
 git pull                    É a versão automatizada do git fetch. Faz o download de ramificação de um repositório remoto e faz a mesclagem imediata na ramificação atual. É o equivalente Git do svn update.
@@ -21,8 +23,6 @@ git revert                  Desfaz o commit de um instantâneo. Ao identificar u
 git clean -f                Remove arquivos não rastreados da árvore de trabalho
 git rm --cache index.html   Remove os arquivos da árvore de trabalho e do índice
 git restore index.html      Restaura os arquivos das árvores de trabalho
-git tag                     Crie, liste, exclua or verifique um objeto tag assinado com GPG
-git stash                   Acumula as alterações em um outro diretório de trabalho
 
 ------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ git init                    # configuração inicial de um novo repositório # I
 git status                  # exibe as condições do diretório de trabalho e da área de staging
 git add index.html          # adicionar o arquivo ainda não rastreados
 git add .                   # adicionar todos os arquivos ainda não rastreados  # Move as alterações do diretório de trabalho para a área de staging
-git commit -m '<msg>'    # comitar todos os tipos de arquivos (-a), com a mensagem(-m '<msg>')
+git commit -a -m '<msg>'    # comitar todos os tipos de arquivos (-a), com a mensagem(-m '<msg>')
 
 create a new repository on the command line
     echo "# cms-git" >> README.md
@@ -51,7 +51,7 @@ git checkout -b|-B <new_branch>
 git checkout -b feature/001
 git checkout -b "develop"   # Alterne entre os ramos ou restaure os arquivos da árvore de trabalho # navegar entre ramificações criadas pelo git branch
 git push --set-upstream origin develop
-git commit -m "#004: alteração do arquivo HTML"
+git commit -a -m "#004: alteração do arquivo HTML"
 git push # Atualiza as refs remotas junto com os objetos associados a ela
 git branch  # Lista, cria ou exclui ramificações
 git branch -a # listando suas branchs locais e remotas
@@ -69,14 +69,30 @@ git fetch -p
 
 ------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------
-git config --global core.editor "code --wait"
+
+git flow init [-d]
+git flow feature publish <your feature>
+
+git flow feature
+git flow feature start <name> [<base>]
+git flow feature finish <name>
+
+git flow feature publish <name>
+git flow feature pull <remote> <name>
+
+git flow release
+git flow release start <release> [<base>]
+git flow release finish <release>
+
+git flow hotfix
+git flow hotfix start <release> [<base>]
+git flow hotfix finish <release>
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 git config --global user.name "<nome>"
 git config --global user.email "<email>"
-git config --global author.name "<nome>"
-git config --global author.email "<email>"
-git config --global committer.name "<nome>"
-git config --global committer.email "<email>"
 
 git init
 git clone https://github.com/ChrisMarSilva/cms-git.git Project
@@ -87,8 +103,8 @@ git clone https://github.com/ChrisMarSilva/cms-git.git Feature.Project
 git status
 git add index.html
 git add .
-git commit -m '<msg>'
-git commit -m "#024: xxxx"
+git commit -a -m '<msg>'
+git commit -a -m "#024: xxxx"
 git push
 
 git checkout main
@@ -111,116 +127,12 @@ git push
 git branch -d feature/1
 git push origin --delete feature/1
 
-git checkout -b release/v1.0.1
-git tag v1.0.1
-git tag -a v1.0.1 -m “Release do novo componente”
-git show v1.0.1
-git push origin v1.0.1
-
 git clean -f
 git rm --cache index.html
-git checkout --
 git checkout index.html
 git restore index.html 
-git reset --hard HEAD~1
-
-git remote show origin
 
 git log
-git log main
-git log develop
-git log --oneline
-git reflog
-git shortlog
-
-git diff
-git diff develop main
-
-git tag <nome>
-git tag -a <nome> -m <msg>
-git tag -d <nome>
-
-git show 
-git show <nome>
-
-git stash 
-git stash pop
-git stash apply
-
-------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------
-
-git fetch?
-git rebase?
-
-git reset?
-git revert?
-git restore?
-git clean?
-
-------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------
-
-Iniciando o Git Flow
-    Com comando básico do Git:
-        git checkout -b develop
-    Com a CLI do Git-flow:
-        git flow init
-
-Criação de uma feature
-    Com comandos básicos do Git:
-        git checkout develop
-        git checkout -b feature/<feature-name>
-    Com a CLI do Git-flow:
-        git flow feature start <feature-name>
-            git flow feature start <name>
-            git flow feature finish <name>
-            git flow feature publish <name>
-            git flow feature pull <remote> <name>
-
-Finalização de uma feature
-    Com comandos básicos do Git:
-        git checkout develop
-        git merge <feature-name>
-        git branch -d feature/your-feature
-    Com a CLI do Git-flow:
-        git flow feature finish <feature-name>
-
-Criação de uma Release
-    Com comandos básicos do Git:
-        git checkout develop
-        git checkout -b release/v1.0.2
-    Com a CLI do Git-flow:
-        git flow release start v1.0.2
-
-Finalização de uma Release
-    Com comandos básicos do Git:
-        git checkout main
-            git merge release/v1.0.2
-        git checkout develop
-            git merge release/v1.0.2
-        git tag v1.0.2 ou git tag -a v1.0.2 -m "Release version v1.0.2"
-        git branch -d release/v1.0.2
-    Com a CLI do Git-flow:
-        git flow release finish v1.0.2
-
-Criação de um Hotfix
-    Com comandos básicos do Git:
-        git checkout main
-        git checkout -b hotfix/<hotfix-name>
-    Com a CLI do Git-flow:
-        git flow hotfix start <hotfix-name>
-
-Finalização de um Hotfix
-    Com comandos básicos do Git:
-        git checkout main
-            git merge hotfix/<hotfix-name>
-        git checkout develop
-            git merge hotfix/<hotfix-name>
-        git tag v1.0.1 ou git tag -a v1.0.1 -m "Hotfix version 1.0.1"
-        git branch -d hotfix/1.0.1
-    Com a CLI do Git-flow:
-        git flow hotfix finish <hotfix-name>
 
 ------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------
