@@ -1,4 +1,10 @@
 
+git reset --mixed 794f56cb0686fcbea44e1a293bd7322a95a95735
+git stash -m "revertendo o push Ajuste no endpoint BdvProprio, para add retornos da API padronizados"
+git revert 794f56cb0686fcbea44e1a293bd7322a95a95735
+git stash apply
+git push -f
+
 ------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------
 
